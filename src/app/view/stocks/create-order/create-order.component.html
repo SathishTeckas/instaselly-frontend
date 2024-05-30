@@ -1,0 +1,56 @@
+<breadcrumb></breadcrumb>
+
+<div class="container-box" *ngFor="let id of selectedProductIds; let i = index">
+
+    <div class="item-id">
+        <p class="item">Product # {{ i + 1 }}</p>
+    </div>
+
+    <div class="item-details">
+
+        <h6 class="sub-heading mb-2">Details</h6>
+
+        <product-details [productId]="id" (productDetailChange)="onDetailsChanges($event, i)"></product-details>
+
+    </div>
+
+</div>
+
+<div class="order">
+    <div class="order-details mb-3">
+        <h6>Sub Total</h6>
+
+        <div class="row mb-2">
+            <div class="col-md-6">
+                Total Quantity
+            </div>
+            <div class="col-md-6">
+                {{ totalQuantity | numberFormat }}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                Shipping Charges
+            </div>
+            <div class="col-md-6">
+                ₹{{ shippingCost | numberFormat }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h6>Total</h6>
+            </div>
+            <div class="col-md-6">
+                <h6>₹{{ total | numberFormat }}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="action-buttons">
+    <button mat-button style="margin-right: 10px;" (click)="goBack()">Cancel</button>
+    <button class="save-btn" mat-raised-button color="accent" (click)="createOrder()">Create Order</button>
+</div>

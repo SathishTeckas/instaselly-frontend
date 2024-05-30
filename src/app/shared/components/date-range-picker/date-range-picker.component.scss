@@ -1,0 +1,32 @@
+@import '/src/assets/instaselly/styles/style.scss';
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.date-picker {
+
+    ::ng-deep {
+        .mat-mdc-form-field-subscript-wrapper {
+            display: none !important;
+        }
+    
+        .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+            padding: 5px 5px 5px 0px !important;
+            width: 220px;
+        }
+
+        .mat-mdc-text-field-wrapper {
+            height: 36px !important;
+            padding: 0 !important;
+            background-color: $light-bg;
+        }
+
+        .mat-mdc-icon-button {
+            font-size: 14px;
+            height: 14px;
+            width: 40px;
+            position: relative;
+            top: -7px;
+            left: -4px;
+        }
+    }
+}
+

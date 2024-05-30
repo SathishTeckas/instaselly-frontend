@@ -1,0 +1,53 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.d-flex {
+    margin: 10px 0px;
+}
+
+.ml-auto {
+    display: flex;
+
+    .thumbnail {
+        width: 80px;
+        height: 80px;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+
+    .product-details {
+
+        margin-left: 12px;
+
+        
+
+        .light-text {
+            color: $text-color-light;
+            font-family: $font-family-light;
+        }
+
+        .last-visit {
+            font-size: 0.672rem;
+            color: $text-color-light;
+            margin-top: 5px;
+        }
+    }
+}
+
+
+.text-right {
+    text-align: right;
+}
+
+p {
+    margin-bottom: 5px;
+    color: $text-color;
+    font-size: 1rem;
+    font-family: $font-family-medium;
+}

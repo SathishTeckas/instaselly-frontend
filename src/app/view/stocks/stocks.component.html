@@ -1,0 +1,90 @@
+<div class="mb-3">
+    <stock-stats></stock-stats>
+</div>
+
+<div class="mb-3">
+
+    <div class="d-flex" *ngIf="isMobile">
+        <h5 class="mobile-title">Stocks List</h5>
+        <div class="ms-auto">
+            <button  class="filter-btn" (click)="showFilter = true;">Filter</button>
+        </div>
+    </div>
+
+    <stock-filter *ngIf="!isMobile" (onFilterChange)="onFilter($event)"></stock-filter>
+</div>
+
+<div [ngStyle]="selectedProducts.length > 0 ? { 'margin-bottom': (isMobile ? '70px': '65px') }: { 'margin-bottom': '0px' }">
+    
+    <stock-details 
+        *ngIf="!isMobile"
+        [products]="products" 
+        (onSelectionChange)="onStockSelectionChange($event)"
+        (markFavorite)="updateFavorite($event)"
+        [clearSelection]="clearSelection"
+    ></stock-details>
+    
+    <stock-details-compact
+        *ngIf="isMobile"
+        [products]="products" 
+        (onSelectionChange)="onStockSelectionChange($event)"
+        (markFavorite)="updateFavorite($event)"
+        [clearSelection]="clearSelection"
+    ></stock-details-compact>
+
+    <mat-paginator *ngIf="totalProducts > 10 && !isMobile" (page)="onPageChange($event)" [length]="totalProducts" [pageSize]="pageSize" [showFirstLastButtons]="true" [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page">
+    </mat-paginator>
+</div>
+
+<div class="action-sheet" *ngIf="selectedProducts.length > 0" [ngStyle]="isMobile ? { 'bottom': '66px' }: {}">
+    <div class="d-flex">
+        <div class="ml-auto">
+            <button mat-button color="warn" [matMenuTriggerFor]="deleteAction" #menuTrigger>
+                <mat-icon>delete</mat-icon> Delete ({{ selectedProducts.length }} <span *ngIf="!isMobile"> {{ selectedProducts.length === 1 ? 'item': 'items' }}</span>)
+            </button>
+            <mat-menu #deleteAction="matMenu">
+                <p>Are you sure, you want to delete {{ selectedProducts.length }} {{ selectedProducts.length === 1 ?
+                    'stock': 'stocks' }}?</p>
+                <div style="text-align: right;">
+                    <button mat-button>Cancel</button>
+                    <button mat-button color="warn" (click)="deleteStocks()">Delete</button>
+                </div>
+            </mat-menu>
+        </div>
+        <div class="ms-auto">
+            <button mat-button class="mr-2" (click)="clearSelections()">Cancel</button>
+            <button mat-raised-button color="accent" (click)="createOrder()">Create Order ({{ selectedProducts.length }}
+                <span *ngIf="!isMobile"> {{ selectedProducts.length === 1 ? 'item': 'items' }}</span>)</button>
+        </div>
+    </div>
+</div>
+
+<nz-drawer  [nzFooter]="footer" [nzSize]="'default'" [nzClosable]="false" [nzCloseOnNavigation]="true" [nzVisible]="showFilter" [nzPlacement]="'right'" [nzTitle]="drawerTitle">
+    <ng-container *nzDrawerContent>
+        <stock-filter [isMobile]="isMobile" [appliedFilter]="filter ? filter: {}" (onFilterChange)="onFilter($event)"></stock-filter>
+    </ng-container>
+
+    <ng-template #footer>
+
+        <div *ngIf="filter">
+            <button color="accent" class="w-50" (click)="clearFilter()" mat-button>
+                Clear
+           </button>
+           <button color="primary" class="w-50" mat-raised-button (click)="showFilter = false" mat-button>
+                Apply
+            </button>
+        </div>
+        
+    </ng-template>
+
+</nz-drawer>
+
+<ng-template #drawerTitle>
+    <div class="d-flex">
+        <h6>Filter</h6>
+        <div class="ms-auto">
+            <mat-icon class="text-button" mat-ripple (click)="showFilter = false;">close</mat-icon>
+        </div>
+    </div>
+</ng-template>

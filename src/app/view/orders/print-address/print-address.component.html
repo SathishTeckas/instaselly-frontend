@@ -1,0 +1,40 @@
+<h6 mat-dialog-title>Print Address</h6>
+<div mat-dialog-content>
+    
+    <div class="row">
+        <div class="col-md-6 border-right" *ngIf="sellerAddress">
+
+            <h6>From</h6>
+
+            <b *ngIf="sellerAddress.fullName as name">{{ name }}</b>
+            <p class="address">
+                <span *ngIf="sellerAddress?.addressLine1 as appartment">{{ appartment }} ,</span><br>
+                <span *ngIf="sellerAddress?.addressLine2 as address">{{ address }} ,</span><br>
+                <span *ngIf="sellerAddress?.city as city">{{ city }} ,</span><br>
+                <span *ngIf="sellerAddress?.state as state">{{ state }} ,</span><br>
+                <span *ngIf="sellerAddress?.pincode as pincode">{{ pincode }} ,</span><br>
+                <span *ngIf="sellerAddress?.phoneNumber as phone">{{ phone }}</span>
+            </p>
+            
+        </div>
+        <div class="col-md-6 pl-3">
+            <h6>To</h6>
+
+            <b *ngIf="data?.customerName as name">{{ name }}</b>
+            <p class="address">
+                <span *ngIf="data?.address?.shippingAddress?.addressLine1 as appartment">{{ appartment }} ,</span><br>
+                <span *ngIf="data?.address?.shippingAddress?.addressLine2 as address">{{ address }} ,</span><br>
+                <span *ngIf="data?.address?.shippingAddress?.city as city">{{ city }} ,</span><br>
+                <span *ngIf="data?.address?.shippingAddress?.state as state">{{ state }} ,</span><br>
+                <span *ngIf="data?.address?.shippingAddress?.pincode as pincode">{{ pincode }} ,</span><br>
+                <span *ngIf="data?.address?.shippingAddress?.phoneNumber as phone">{{ phone }}</span>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+<div mat-dialog-actions class="text-right">
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-raised-button color="accent" (click)="print()" cdkFocusInitial>Print</button>
+</div>

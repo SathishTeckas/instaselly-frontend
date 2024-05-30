@@ -1,0 +1,83 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.app-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: $text-color;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.centered-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: $body-bg;
+
+    .auth-card {
+        background-color: $body-bg;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px $border-color;
+        max-width: 30%;
+        width: 80%;
+        border: 1px solid $border-color;
+    }
+}
+
+@media (max-width: 1400px) {
+    .centered-card {
+        .auth-card {
+            max-width: 50%;
+        }
+    }
+    
+    .app-title { 
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 100%;
+        left: 0 !important;
+    }
+}
+
+@media (max-width: 960px) {
+    .centered-card {
+
+        height: 90vh;
+        .auth-card {
+            max-width: 60%;
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .centered-card {
+        .auth-card {
+            max-width: 90%;
+            width: 90%;
+        }
+    }   
+}
+
+@media (max-width: 480px) {
+
+    .centered-card {
+        .auth-card {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    .app-title {
+        font-size: 16px;
+        top: 10px;
+        left: 10px;
+    }
+}

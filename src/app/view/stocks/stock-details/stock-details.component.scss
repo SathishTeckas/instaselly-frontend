@@ -1,0 +1,137 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.stock-table {
+
+    width: 100%;
+    border: 1px solid $border-color;
+
+    thead {
+        tr {
+            border-bottom: 1px solid $border-color;
+        }
+
+        td {
+          padding: 10px;  
+          color: $text-color-light;
+          font-size: 0.75rem;
+          font-family: $font-family-semibold;
+          letter-spacing: 0.5px;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $border-color;
+        }
+
+        td {
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+    }
+}
+
+mat-checkbox {
+    margin-top: 5px;
+}
+
+.product-image-container {
+    display: flex;
+
+    .product-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+    }
+
+    .product-details {
+        width: auto;
+        padding-left: 10px;
+        padding-top: 2px;
+
+        .product-name, .product-id {
+            margin-bottom: 0;
+            color: $text-color;
+            font-family: $font-family-medium;
+        }
+
+        .product-name {
+            font-size: 0.872rem;
+            margin-bottom: 5px;
+        }
+    }
+
+}
+
+.tag {
+    background-color: $success;
+    padding: 3px 8px;
+    border-radius: 50px;
+    color: $success;
+    margin-left: 5px;
+    font-size: 0.812rem;
+
+    mat-icon {
+        font-size: 14px !important;
+        width: 14px;
+        height: 14px;
+        position: relative;
+        top: 2px;
+        left: 2px;
+        margin: 0px;
+    }
+
+}
+
+.high {
+    background-color: $success-transparent;
+    color: $success;
+}
+
+.low {
+    background-color: $error-transparent;
+    color: $error;
+}
+
+.status-container {
+    display: flex;
+
+    .status {
+        width: 12px;
+        height: 12px;
+        border-radius: 50px;
+        background-color: $border-color;
+        margin-top: 6px;
+    }
+    
+    .status-text {
+        margin-left: 8px;
+    }
+}
+
+
+.green {
+    background-color: $success !important;
+}
+
+.red {
+    background-color: $error !important;
+}
+
+.yellow {
+    background-color: $warning !important;
+}
+
+.no-product {
+    padding: 20px !important;
+    font-size: 0.812rem !important;
+    color: $text-color-light;
+    padding-left: 35px !important;
+}

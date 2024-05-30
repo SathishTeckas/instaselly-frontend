@@ -1,0 +1,85 @@
+<breadcrumb></breadcrumb>
+
+<div class="container-box" [style.height]="height + 'px'">
+
+    <form [formGroup]="productGroup">
+        <div class="item-id">
+            <p class="item">Product #1</p>
+        </div>
+    
+        <div class="item-details" [style.height]="(height - (isMobile ? 83: 93)) + 'px'">
+    
+            <h6 class="sub-heading mb-2">Add Details</h6>
+    
+            <div class="form">
+    
+                <div class="row g-2 mb-2">
+                    
+                    <div class="col-md-4">
+                        <mat-form-field appearance="outline" class="w-100" color="accent">
+                            <mat-select formControlName="categoryId" name="categoryId" id="categoryId" placeholder="Select Category" (selectionChange)="onCategoryChange($event)">
+                                <mat-option *ngFor="let cat of categories" [value]="cat.categoryId">
+                                    {{ cat.categoryName }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hasError('categoryId', 'required')">
+                                Please select category
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <mat-form-field appearance="outline" class="w-100" color="accent">
+                            <input formControlName="name" name="name" id="name" matInput placeholder="Product Name" >
+                            <mat-error *ngIf="hasError('name', 'required')">
+                                Please enter product name
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+    
+                </div>
+    
+    
+                <div class="row mb-2">
+                    <img-upload [availableImage]="availableImages" (onImageChange)="onImageChanges($event)"></img-upload>
+                </div>
+               
+    
+                <div class="row mb-2" *ngIf="params && params.length > 0">
+                    <product-details [fields]="params" [isError]="invalidDetails" (productDetailChange)="onDetailChange($event)" [productDetails]="availableProducts"></product-details>
+                </div>
+    
+    
+                <div class="row g-2 mb-2">
+                    <div class="col-md-12">
+                        <mat-checkbox disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="shareOnInstagram" class="checkbox" color="primary">Share on instagram (will available soon)</mat-checkbox>
+                    </div>
+                </div>
+    
+    
+                <div class="row g-2" *ngIf="shareOnInstagram">
+                    <div class="col-md-12">
+                        <p class="label">Write a post for instagram</p>
+                        <mat-form-field appearance="outline" class="w-100" color="accent">
+                            <textarea matInput placeholder="Ex. Order will be delivered ..."></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+            </div>
+    
+    
+        </div>
+    
+        <div class="action-item">
+            <button mat-button style="margin-right: 10px;" (click)="goBack()">Cancel</button>
+            <button *ngIf="!shareOnInstagram" class="save-btn" mat-raised-button color="primary" (click)="save()">Save Stock</button>
+            <button *ngIf="shareOnInstagram" mat-raised-button color="accent" (click)="schedule()">
+                <mat-icon style="margin: 0px;">alarm</mat-icon>
+            </button>
+            <button *ngIf="shareOnInstagram" class="save-btn" mat-raised-button color="primary" (click)="save()">Save & Share to Instagram</button>
+        </div>
+    </form>
+
+</div>

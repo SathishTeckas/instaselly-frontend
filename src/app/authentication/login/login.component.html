@@ -1,0 +1,42 @@
+<div class="auth-content-card">
+   
+    <h6 class="auth-title">Efficiently manage your orders with just a few clicks. Log in now!</h6>
+
+    <form [formGroup]="loginForm">
+        <div class="form">
+
+            <mat-form-field appearance="outline" class="w-100 mb-2" color="accent">
+                <input formControlName="userName" name="userName" id="userName" matInput placeholder="Email / Phone number" >
+                <mat-error *ngIf="hasError('userName', 'required')">
+                    Please enter email or phone number
+                </mat-error>
+            </mat-form-field>
+    
+    
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <input [type]="hidePassword ? 'password': 'text'" formControlName="password" name="password" id="password" matInput placeholder="Password (8 or more characters)" >
+                <button class="password-btn" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="hasError('password', 'required')">
+                    Please enter password
+                </mat-error>
+            </mat-form-field>
+    
+            <div class="d-flex">
+                <div class="ml-auto">
+                    <mat-checkbox formControlName="remember" name="remember" id="remember">Remember Me</mat-checkbox>
+                </div>
+    
+                <div class="ms-auto">
+                    <a mat-button class="text-button" (click)="goto()">Forgot Password?</a>
+                </div>
+            </div>
+    
+    
+        </div>
+    
+        <button mat-raised-button class="w-100" color="primary" (click)="login()">Log In</button>
+    </form>
+
+</div>

@@ -1,0 +1,32 @@
+<div class="order-link-container">
+
+    <mat-toolbar class="navbar" color="primary">
+
+        <div class="d-flex">
+            <h6>Order Link</h6>
+        </div>
+        
+        <div class="ms-auto">
+            <mat-icon class="text-button" mat-ripple (click)="close()">close</mat-icon>
+        </div>
+    </mat-toolbar>
+
+    <div class="centered-content">
+    
+        <div class="status-image">
+            <img src="../../../../assets/instaselly/img/success.svg" alt="status">
+        </div>
+
+        <h2 class="order-status">Order Created</h2>
+
+        <mat-form-field appearance="outline" color="accent">
+            <input matInput placeholder="link" [value]="baseUrl" readonly>
+            <button mat-raised-button matSuffix color="accent" (click)="copy(baseUrl)">Copy</button>
+        </mat-form-field>
+
+        <br>
+
+        <a mat-button (click)="close()">Back to Stocks</a>
+    </div>
+
+</div>

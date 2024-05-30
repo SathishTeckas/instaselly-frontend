@@ -1,0 +1,29 @@
+<div class="stats-container">
+    <div class="stats">
+        <h5><mat-icon>trending_up</mat-icon> Orders Data</h5>
+    </div>
+    <div class="stats">
+        <div class="stas-details">
+            <p>Total Orders</p>
+            <h6>{{ stats.total | numberFormat }}</h6>
+        </div>
+    </div>
+    <div class="stats">
+        <div class="stas-details">
+            <p>Placed Orders</p>
+            <h6>{{ stats.placed | numberFormat }}</h6>
+        </div>
+    </div>
+    <div class="stats">
+        <div class="stas-details">
+            <p>Delivery Process</p>
+            <h6>{{ stats.dispatched | numberFormat }}</h6>
+        </div>
+    </div>
+    <div class="stats">
+        <div class="stas-details">
+            <p>Delivered Orders</p>
+            <h6>{{ stats.delivered | numberFormat }}</h6>
+        </div>
+    </div>
+</div>

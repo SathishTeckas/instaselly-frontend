@@ -1,0 +1,77 @@
+
+<div class="horizontal-scroller">
+    <table class="table table-border w-100" [ngClass]="{ 'error': isError }">
+        <thead>
+            <td style="min-width: 120px;" *ngFor="let field of fields">{{ field }}</td>
+            <td style="min-width: 140px;">In Hand Stocks</td>
+            <td style="min-width: 170px;">Minimum Stocks
+                <mat-icon class="help-icon" #tooltip="matTooltip"
+                    matTooltip="You will receive a notification if the stocks fall below the specified minimum."
+                    matTooltipPosition="above">help</mat-icon>
+            </td>
+            <td style="min-width: 220px;">Minimum Order Quantity
+                <mat-icon class="help-icon" #tooltip="matTooltip"
+                    matTooltip="When you place an order for a product, this value will be set automatically."
+                    matTooltipPosition="above">help</mat-icon>
+            </td>
+            <td style="min-width: 130px;">Actual Price 
+                <mat-icon class="help-icon" #tooltip="matTooltip"
+                    matTooltip="Display only to you"
+                    matTooltipPosition="above">help</mat-icon>
+            </td>
+            <td style="min-width: 130px;">Display Price</td>
+            <td style="min-width: 70px; width: 70px; text-align: center;"></td>
+        </thead>
+        <tbody [formGroup]="productFormGroup">
+    
+            <ng-container formArrayName="products">
+    
+                <ng-container *ngFor="let product of products.controls; let i = index;">
+    
+                    <tr [formGroupName]="i">
+                        <td *ngFor="let field of fields">
+                            <input [formControlName]="field" [name]="field" [id]="field">
+                        </td>
+                        <td>
+                            <input type="number" min="0" formControlName="totalStocks" name="totalStocks" id="totalStocks"> 
+                        </td>
+                        <td>
+                            <input type="number" min="0" formControlName="minimumStocks" name="minimumStocks" id="minimumStocks">
+                        </td>
+                        <td>
+                            <input type="number" min="0" formControlName="minimumOrderQuantity" name="minimumOrderQuantity" id="minimumOrderQuantity">
+                        </td>
+                        <td>
+                            <input type="number" min="0" formControlName="purchaseAmount" name="purchaseAmount" id="purchaseAmount">
+                        </td>
+                        <td>
+                            <input type="number" min="0" formControlName="sellingPrice" name="sellingPrice" id="sellingPrice">
+                        </td>
+                        <td>
+    
+                            <button class="icon-button" matRipple #tooltip="matTooltip" matTooltip="Duplicate"
+                                matTooltipPosition="above" (click)="duplicateProduct(i)">
+                                <mat-icon>filter_none</mat-icon>
+                            </button>
+    
+    
+                            <button class="icon-button delete-icon" matRipple #tooltip="matTooltip" matTooltip="Delete"
+                                matTooltipPosition="above" (click)="removeProduct(i)">
+                                <mat-icon>delete_outline</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+    
+                </ng-container>
+    
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+
+
+<p class="hint" *ngIf="isError">
+    Please add product details
+</p>
+
+<button class="add-btn" mat-raised-button color="accent" (click)="addProduct()">Add More</button>

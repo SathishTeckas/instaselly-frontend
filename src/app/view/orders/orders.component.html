@@ -1,0 +1,14 @@
+<div class="mb-3">
+    <order-stats [stats]="orderStats"></order-stats>
+</div>
+
+<div class="mb-3">
+    <order-filter (onFilterChange)="onFilter($event)"></order-filter>
+</div>
+
+<div>
+    <order-list [orders]="orders" (reloadOrders)="getOrders()"></order-list>
+    <mat-paginator *ngIf="totalOrders > 10" (page)="onPageChange($event)" [length]="totalOrders" [pageSize]="pageSize" [showFirstLastButtons]="true" [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page">
+    </mat-paginator>
+</div>

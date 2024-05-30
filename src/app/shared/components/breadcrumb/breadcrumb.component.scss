@@ -1,0 +1,24 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+::ng-deep {
+
+    .xng-breadcrumb-trail {
+        font-family: $font-family-semibold;
+        color: $text-color-light !important;
+        font-size: 0.812rem;
+        position: relative;
+        top: 1.5px;
+    }
+
+    .xng-breadcrumb-link {
+        font-weight: 600;
+        color: $text-color !important;
+    }
+
+    .xng-breadcrumb-separator {
+        padding: 0px;
+        color: $text-color !important;
+        position: relative;
+        top: 1.5px;
+    }
+}

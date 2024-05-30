@@ -1,0 +1,31 @@
+<div class="d-flex align-items-center" matSnackBarLabel>
+
+    <div class="ml-auto">
+        <span *ngIf="data.type === 'success'">
+            <mat-icon>check_circle</mat-icon>
+        </span>
+    
+        <span *ngIf="data.type === 'error'">
+            <mat-icon>add_circle</mat-icon>
+        </span>
+    
+        <span *ngIf="data.type === 'warning'">
+            <mat-icon>warning</mat-icon>
+        </span>
+    
+        <span *ngIf="data.type === 'info'">
+            <mat-icon>warning</mat-icon>
+        </span>
+    </div>
+
+    <div class="ml-auto">
+        <span class="snack-label">
+            {{ data.message }}
+        </span>
+    </div>
+    
+    <div class="ms-auto" *ngIf="data.closeIcon">
+        <mat-icon mat-ripple class="close-icon" (click)="snackBarRef.dismiss()">close</mat-icon>
+    </div>
+
+</div>

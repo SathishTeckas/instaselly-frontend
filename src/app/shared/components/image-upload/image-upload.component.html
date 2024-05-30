@@ -1,0 +1,45 @@
+<div [ngClass]="{ 'unsupported' : error }" class="upload-img" mat-ripple (click)="fileInput.click()" *ngIf="!previewImage; else preview">
+    
+    <div class="upload-content">
+        <p>Drag image here</p>
+        <p>or</p>
+        <button mat-button>Browse images</button>
+        <input type="file" #fileInput hidden (change)="onFileInput($event)" accept="image/*">
+    </div>
+
+    <div class="action-container" *ngIf="error">
+        <div class="error-message">
+            <mat-icon>error</mat-icon> 
+            <p>{{ error }}</p>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #preview>
+    <div class="image-preview">
+        <img [src]="previewImage" alt="image preview">
+        
+        <div class="action-container">
+            
+            <div class="set-primary">
+                
+                <button mat-ripple (click)="markAsPrimary()" *ngIf="!isPrimary; else primary">
+                    <mat-icon>filter_tilt_shift</mat-icon> 
+                    <p>Mark as primary</p>
+                </button>
+
+                <ng-template #primary>
+                    <mat-icon>check_circle</mat-icon> 
+                    <p>Primary</p>
+                </ng-template>
+                
+            </div>       
+            
+            <div class="delete">
+                <mat-icon mat-ripple (click)="onDelete()">delete_outline</mat-icon> 
+            </div>
+
+        </div>
+    </div>
+</ng-template>

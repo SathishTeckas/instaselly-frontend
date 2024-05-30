@@ -1,0 +1,31 @@
+<mat-toolbar class="navbar" color="primary">
+
+    <div class="left-bar">
+
+        <a class="app-title">Instaselly</a>
+
+        <div class="action-items" [hidden]="isMobile">
+            <a [routerLink]="menu.path" routerLinkActive="menu-active" class="menu-btn"  *ngFor="let menu of menuItems" mat-button>
+                {{ menu.name }}
+            </a>
+        </div>
+
+    </div>
+
+    <div class="right-bar">
+
+        <div class="action-items" [hidden]="isMobile">
+            <button class="raised-menu-btn" (click)="goto('stock/manage')" mat-raised-button color="primary">Add Stocks</button>
+        </div>
+
+        <div class="action-items"  [matMenuTriggerFor]="profileMenu">
+            <div mat-ripple class="profile-circle">PS</div>
+        </div>
+
+        <mat-menu #profileMenu="matMenu">
+            <button mat-menu-item> <mat-icon>insert_emoticon</mat-icon> Profile</button>
+            <button mat-menu-item (click)="logout()"> <mat-icon>exit_to_app</mat-icon> Logout</button>
+          </mat-menu>
+    </div>
+
+</mat-toolbar>

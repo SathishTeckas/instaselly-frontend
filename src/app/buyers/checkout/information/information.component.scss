@@ -1,0 +1,38 @@
+@import '/src/assets/instaselly/styles/style.scss';
+
+::ng-deep {
+    .dont-show .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+    }
+
+    mat-radio-group {
+        display: flex;
+
+        .mat-mdc-radio-button {
+            display: inline-flex;
+            align-items: center;
+            vertical-align: middle;
+            border: 1px solid $border-color;
+            border-radius: 5px;
+            margin-right: 10px;
+            padding: 10px 20px;
+            width: 100%;
+        }
+
+        .mat-mdc-radio-button:last-child {
+            margin-right: 0px !important;
+        }
+    }
+
+
+}
+
+.float-right {
+    text-align: right;
+    margin-top: 20px;
+
+    .save-btn {
+        margin-left: 10px;
+        padding: 24px 30px;
+    }
+}

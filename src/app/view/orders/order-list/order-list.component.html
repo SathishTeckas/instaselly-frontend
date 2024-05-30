@@ -1,0 +1,66 @@
+<table class="stock-table table">
+    <thead>
+        <tr>
+            <td>Order ID</td>
+            <td>Customer Name</td>
+            <td style="max-width: 250px;">Order Details</td>
+            <td style="width: 120px;">Price</td>
+            <td style="width: 150px;">Revenue</td>
+            <td>Tracking ID</td>
+            <td style="width: 150px;">Status</td>
+            <td style="width: 100px;">Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orders; let i = index">
+            <td>
+                <p class="product-id"># {{ order.orderId }}</p>
+                <p class="product-date">{{ order.createdAt | millisecondsToDate }}</p>
+            </td>
+            <td style="padding-top: 25px;">
+                {{ order.customerName ?  order.customerName: 'Yet to link' }}
+            </td>
+            <td style="padding-top: 20px;">
+                <mat-chip *ngFor="let stock of order.variants; let s = index">
+                    #{{ s + 1 }} - 
+                    <span *ngFor="let item of stock.attributes; let last = last">
+                        {{ item.value }} 
+                        <span *ngIf="!last"> - </span>
+                    </span>
+                    - {{ stock.quantity }}
+                </mat-chip>
+            </td>
+            <td style="padding-top: 25px;">
+                ₹{{ order.totalAmount | numberFormat }}
+            </td>
+            <td style="padding-top: 25px;">
+                ₹{{ 1299 | numberFormat }}
+                <!-- <span class="tag high">
+                    <mat-icon>arrow_upward</mat-icon> {{ 3.2 }}%
+                </span> -->
+            </td>
+            <td style="padding-top: 17px;">
+            
+                <button mat-button *ngIf="!order.trackingId; else showId" (click)="addTrackingDetails(order.orderId)">Add</button>
+
+                <ng-template #showId>
+                    {{ order.trackingId }}
+                </ng-template>
+
+            </td>
+            <td style="padding-top: 15px;">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-select [ngModel]="order.status" (ngModelChange)="onStatusChange($event, order.orderId)">
+                        <mat-option *ngFor="let status of orderStatus" [value]="status.value">{{ status.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td style="padding-top: 17px;">
+                <button mat-button (click)="goto(order.orderId)">View</button>
+            </td>
+        </tr>
+        <tr *ngIf="!orders || orders.length <= 0">
+            <td colspan="8" class="no-orders">No orders found at this moment.</td>
+        </tr>
+    </tbody>
+</table>

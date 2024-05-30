@@ -1,0 +1,24 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.border-right {
+    border-right: 1px solid $border-color;
+    overflow-y: auto;
+}
+
+.light-text {
+    font-family: $font-family-light;
+    color: $text-color-light;
+}
+
+.hightlight {
+    font-size: 1rem;
+    font-family: $font-family-bold;
+}
+
+.text-right {
+    text-align: right;
+}
+
+::ng-deep mat-divider {
+    color: $border-color;
+}

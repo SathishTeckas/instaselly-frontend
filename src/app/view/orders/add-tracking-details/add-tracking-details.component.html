@@ -1,0 +1,26 @@
+<form [formGroup]="trackingDetailForm">
+    <h6 mat-dialog-title class="mb-3">Tracking Details</h6>
+    <div mat-dialog-content>
+        
+        <mat-form-field appearance="outline" class="w-100 mb-3" color="accent">
+            <input formControlName="trackingId" name="trackingId" id="trackingId" matInput placeholder="Tracking ID" >
+            <mat-error *ngIf="hasError('trackingId', 'required')">
+                Please enter tracking id
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" class="w-100" color="accent">
+            <input formControlName="trackingUrl" name="trackingUrl" id="trackingUrl" matInput placeholder="Tracking URL" >
+            <mat-error *ngIf="hasError('trackingUrl', 'required')">
+                Please enter tracking url
+            </mat-error>
+        </mat-form-field>
+    
+    
+    </div>
+    <div mat-dialog-actions class="text-right">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="accent" (click)="save()" cdkFocusInitial>Save</button>
+    </div>
+    
+</form>

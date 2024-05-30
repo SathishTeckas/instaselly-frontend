@@ -1,0 +1,87 @@
+@use '@angular/material' as mat;
+
+@import './assets/instaselly/styles/root.css';
+@import './assets/instaselly/styles/variables.scss';
+@import './assets/instaselly/styles/color.palette.scss';
+@import './assets/instaselly/styles/style.scss';
+
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
+@include mat.core();
+
+$primary:  mat.define-palette($primary-palette, 500);
+$accent: mat.define-palette($secondary-palette, 500);
+$warn: mat.define-palette(mat.$red-palette);
+
+$font: mat.define-typography-config(
+  $font-family: $font-family-regular
+);
+
+$theme: mat.define-light-theme((
+ color: (
+   primary: $primary,
+   accent: $accent,
+   warn: $warn
+ ),
+ typography: $font,
+ density: 0
+));
+
+@include mat.core-theme($theme);
+@include mat.button-theme($theme);
+@include mat.form-field-theme($theme);
+@include mat.input-theme($theme);
+@include mat.checkbox-theme($theme);
+@include mat.select-theme($theme);
+@include mat.icon-theme($theme);
+@include mat.tooltip-theme($theme);
+@include mat.dialog-theme($theme);
+@include mat.chips-theme($theme);
+@include mat.expansion-theme($theme);
+@include mat.slide-toggle-theme($theme);
+@include mat.paginator-theme($theme);
+@include mat.snack-bar-theme($theme);
+@include mat.sidenav-theme($theme);
+@include mat.radio-theme($theme);
+@include mat.datepicker-theme($theme);
+@include mat.menu-theme($theme);
+
+html {
+  overflow-x: hidden;
+}
+
+html, body { height: 100%; }
+
+body { 
+  margin: 0; 
+  font-family: $font-family-regular; 
+  background-color: $body-bg !important;
+  color: $text-color !important;
+}
+
+/* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $scroll-bar;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-color;
+  transition: all .5s;
+}

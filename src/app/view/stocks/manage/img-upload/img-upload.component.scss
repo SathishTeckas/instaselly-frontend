@@ -1,0 +1,15 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.hint {
+    color: $text-color-light;
+    font-size: 0.812rem;
+    margin: 10px 0px;
+
+    mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        position: relative;
+        top: 4px;
+    }
+}

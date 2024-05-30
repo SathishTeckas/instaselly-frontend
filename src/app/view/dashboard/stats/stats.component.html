@@ -1,0 +1,29 @@
+<div class="stats-container">
+    <div class="stats">
+        <div class="stas-details">
+            <p>Today Revenue</p>
+            <h6>₹{{ stats.revenue.revenueAmount | numberFormat }}</h6>
+            <p class="sub-text">{{ date | compactDate }}</p>
+        </div>
+    </div>
+    <div class="stats">
+        <div class="stas-details">
+            <p>Placed Orders</p>
+            <h6>{{ stats.orderStats.placed | numberFormat }}</h6>
+            <!-- <p class="sub-text">Out of {{ stats.orderStats.created | numberFormat }} created orders</p> -->
+        </div>
+    </div>
+    <div class="stats">
+        <div class="stas-details">
+            <p>Dispatched </p>
+            <h6>{{ stats.orderStats.dispatched | numberFormat }}</h6>
+            <p class="sub-text">Out of {{ stats.orderStats.total | numberFormat }} orders</p>
+        </div>
+    </div>
+    <div class="stats">
+        <div class="stas-details">
+            <p>Delivered Orders</p>
+            <h6>{{ stats.orderStats.delivered | numberFormat }}</h6>        
+        </div>
+    </div>
+</div>

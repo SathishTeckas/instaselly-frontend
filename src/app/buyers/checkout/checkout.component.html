@@ -1,0 +1,63 @@
+
+
+<div class="row g-2">
+
+    <div class="col-md-8 border-right p-3" [style.height]="height + 'px'">
+        
+        <nz-tabset [(nzSelectedIndex)]="currentTab" *ngIf="!onlyPreview; else showPreview">
+            <nz-tab nzTitle="Information">
+                <information [orderDeatails]="orderDeatails" [preview]="false" (billingDetails)="onAddressChange($event)"></information>
+            </nz-tab>
+            <nz-tab nzTitle="Shipping" [nzDisabled]="disableShippingDetails">
+                <shipping-details [address]="addressDetails" (makePayment)="gotoPayment()" (changeAddress)="onChangeAddress()"></shipping-details>
+            </nz-tab>
+            <nz-tab nzTitle="Payment" [nzDisabled]="disablePayment">
+                <success-payment></success-payment>
+            </nz-tab>
+        </nz-tabset>
+
+        <ng-template #showPreview>
+            <information [orderDeatails]="orderDeatails" [preview]="true"></information>
+        </ng-template>
+
+    </div>
+
+    <div class="col-md-4 p-3" *ngIf="orderDeatails">
+
+        <h6 class="mb-4">Order Summary</h6>
+
+        <div class="mb-2" *ngFor="let variants of orderDeatails.variants">
+            <product-info [variants]="variants"></product-info>
+        </div>
+        
+        <mat-divider class="mb-4"></mat-divider>
+
+        <div class="row g-2 mb-1">
+            <div class="col-md-6 light-text">
+                Subtotal
+            </div>
+            <div class="col-md-6 text-right">
+                {{ orderDeatails.totalAmount | numberFormat }}
+            </div>
+        </div>
+
+        <div class="row g-2 mb-2">
+            <div class="col-md-6 light-text">
+                Shipping Charges
+            </div>
+            <div class="col-md-6 text-right">
+                {{ 0 | numberFormat }}
+            </div>
+        </div>
+
+        <div class="row g-2 mb-1">
+            <div class="col-md-6 light-text">
+                Total
+            </div>
+            <div class="col-md-6 hightlight text-right">
+                {{ orderDeatails.totalAmount | numberFormat }}
+            </div>
+        </div>
+    </div>
+</div>
+

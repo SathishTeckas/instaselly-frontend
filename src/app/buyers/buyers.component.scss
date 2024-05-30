@@ -1,0 +1,24 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.navbar {
+    width: 100%;
+    padding: 10px;
+    background-color: $body-bg;
+    border-bottom: 1px solid $border-color;
+    transition: all .4s;
+    display: flex;
+    justify-content: center;
+}
+
+.app-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: $text-color;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.layout {
+    padding: 0 30px;
+}

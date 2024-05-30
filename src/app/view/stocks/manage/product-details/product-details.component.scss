@@ -1,0 +1,107 @@
+@import '/src/assets/instaselly/styles/style.scss';
+
+table {
+    border-radius: 10px;
+    margin-bottom: 0px;
+    
+    thead td {
+        padding: 10px;
+    }
+
+    td {
+        border: 1px solid $border-color;
+        border-radius: 10px;
+        color: $text-color;
+        font-family: $font-family-medium;
+        font-size: 0.872rem;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+        padding: 0px;
+
+        input {
+            border: none;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+    }
+}
+
+button {
+    padding: 0 25px;
+}
+
+
+
+.text-light {
+    color: $text-color-light !important;
+}
+
+.icon-button {
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+    display: inline-block;
+    width: 50%;
+
+    mat-icon {
+        padding: 0;
+        font-size: 14px;
+        height: 14px;
+        width: 14px;
+    }
+}
+
+.delete-icon {
+    mat-icon { 
+        font-size: 17px;
+        height: 17px;
+        width: 17px;
+    }
+}
+
+
+.error {
+    td {
+        border: 1px solid $error;
+    }
+}
+
+.hint {
+    color: $error;
+    font-size: 0.812rem;
+    margin: 0;
+}
+
+.add-btn {
+    margin: 10px 0px;
+}
+
+::ng-deep {
+    .mat-mdc-tooltip {
+        border-radius: 5px;
+    }
+
+    .mdc-tooltip--multiline .mdc-tooltip__surface {
+        font-size: 0.6875rem;
+        letter-spacing: 0.5px;
+        color: $text-color-white !important;
+        line-height: 17px;
+        font-weight: 200;
+        font-family: $font-family-light;
+    }
+
+    .mdc-tooltip__surface {
+        background-color: $text-color !important;
+        max-width: 250px !important;
+    }
+    
+}
+
+.horizontal-scroller {
+    overflow-x: auto;
+}

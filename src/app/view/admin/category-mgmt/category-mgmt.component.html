@@ -1,0 +1,40 @@
+<div class="d-flex align-items-center">
+    <div class="">
+        <breadcrumb></breadcrumb>
+        <h5 class="page-heading">Categories</h5>
+    </div>
+    <div class="ms-auto">
+        <div class="filters">
+            <button mat-raised-button color="accent" (click)="openCategory()">Add Category</button>
+        </div>
+    </div>
+</div>
+
+<div class="category-section">
+
+    <div class="row g-2">
+        <div class="col-md-5">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle *ngFor="let cat of categories">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{ cat?.categoryName }}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <mat-icon mat-ripple (click)="stopPropagation($event); updateCategory(cat)">edit</mat-icon>
+                            <mat-icon  mat-ripple (click)="stopPropagation($event); deleteCategory(cat)">delete</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+        
+                    <div *ngIf="cat && cat.params && cat.params.length > 0">
+                        <h6>Fields</h6>
+                        <mat-chip *ngFor="let param of cat?.params">{{ param }}</mat-chip>
+                    </div>
+        
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    
+
+</div>

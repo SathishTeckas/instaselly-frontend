@@ -1,0 +1,26 @@
+<div class="rule">
+    
+    <p>When</p>
+
+    <mat-chip-listbox aria-label="If selection" [(ngModel)]="priceBy" (ngModelChange)="operator = (priceBy === 'location' ? 'equals': operator)">
+        <mat-chip-option value="price">Billing Price</mat-chip-option>
+        <mat-chip-option value="location">Buyer Location</mat-chip-option>
+    </mat-chip-listbox>
+    
+    <p>is</p>
+    
+    <mat-chip-listbox aria-label="Fish selection" [(ngModel)]="operator">
+        <mat-chip-option value="equals"> = </mat-chip-option>
+        <mat-chip-option *ngIf="priceBy === 'price'" value="greaterThan"> >= </mat-chip-option>
+        <mat-chip-option *ngIf="priceBy === 'price'" value="lessThan"> <= </mat-chip-option>
+    </mat-chip-listbox> 
+    
+    <p>to</p> 
+
+    <input mat-input>
+     
+    <p>, then Shipping cost is</p>
+    
+    <input mat-input>
+
+</div>

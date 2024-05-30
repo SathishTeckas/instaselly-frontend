@@ -1,0 +1,40 @@
+
+<div class="d-flex mb-3">
+    <h5><mat-icon>trending_up</mat-icon> Business Overview</h5>
+    <div class="ms-auto">
+        <date-range-picker (onRangeChange)="onFilterChange($event)"></date-range-picker>
+    </div>
+</div>
+
+<div class="mb-3">
+    <dashboard-stats [stats]="stats"></dashboard-stats>
+</div>
+
+<div class="card w-100 mb-3">
+    <h5>Sales Analytic</h5>
+    <sales-analytics [saleReport]="saleReport"></sales-analytics>
+</div>
+
+<div class="card w-100 mb-3">
+    <h5 class="mb-3">Profit & Loss Analytics</h5>
+    <profit-loss [profitAnalysis]="profitAnalysis"></profit-loss>
+</div>
+
+<div class="mb-3" *ngIf="products && products.length > 0">
+
+    <div class="d-flex mb-3">
+        <h5>Top Selling Products</h5>
+        <div class="ms-auto">
+            <button mat-raised-button color="accent" (click)="goto()">Show more</button>
+        </div>
+    </div>
+
+    <div class="card no-padding w-100 mb-3">
+        <stock-details [products]="products" [hideSelection]="true"></stock-details>
+    </div>
+</div>
+
+<div *ngIf="topBuyers && topBuyers.length > 0">
+    <h5 class="mb-3">Top Buyers</h5>
+    <buyer-widget [buyers]="topBuyers"></buyer-widget>
+</div>

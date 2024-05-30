@@ -1,0 +1,51 @@
+<h6 mat-dialog-title class="page-heading">Category</h6>
+<div mat-dialog-content>
+
+    <form [formGroup]="categoryForm">
+
+        <div class="row g-2">
+
+            <div class="col-md-12">
+                <mat-label>Category name</mat-label>
+                <mat-form-field class="w-100" appearance="outline">
+                    <input matInput formControlName="categoryName" id="name" placeholder="Ex. Clothing">
+                </mat-form-field>
+            </div>
+    
+            <div class="col-md-12">
+                <mat-label>Fields</mat-label>
+                
+                <mat-form-field class="w-100" appearance="outline">
+                    
+                    <mat-chip-grid #chipGrid aria-label="Field selection">
+                        <mat-chip-row *ngFor="let field of fields" (removed)="remove(field)">
+                            {{field}}
+                            <button matChipRemove [attr.aria-label]="'remove ' + field">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    </mat-chip-grid>
+                    
+                    <input
+                        placeholder="Ex. Size, Colors"
+                        formControlName="params" 
+                        [matChipInputFor]="chipGrid"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)" />
+                </mat-form-field>
+    
+            </div>
+    
+        </div>
+
+        <button hidden id="trigerCatBtn"></button>
+    </form>
+
+</div>
+
+<div mat-dialog-actions class="action-button">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="accent" cdkFocusInitial (click)="addCategory('trigerCatBtn')">
+        {{ data ? 'Update' :  'Add'  }} Category
+    </button>
+</div>

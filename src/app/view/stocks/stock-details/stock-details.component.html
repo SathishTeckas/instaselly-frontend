@@ -1,0 +1,87 @@
+<table class="stock-table table">
+    <thead>
+        <tr>
+            <td style="width: 30px;" *ngIf="!hideSelection"></td>
+            <td>Products</td>
+            <td style="width: 200px;">Category</td>
+            <td style="width: 120px;">Stocks</td>
+            <td style="width: 130px;">Placed Orders</td>
+            <td style="width: 180px;">Revenue</td>
+            <td style="width: 130px;">Status</td>
+            <td style="width: 260px;">Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products; let i = index">
+            <td *ngIf="!hideSelection">
+                <mat-checkbox [(ngModel)]="product.checked" (change)="onSelection($event, i)"></mat-checkbox>
+            </td>
+            <td>
+                <div class="product-image-container">
+                    <div class="product-image">
+                        <img nz-image [nzSrc]="product.images[0]" alt="no preview">
+                    </div>
+                    <div class="product-details">
+                        <p class="product-name">{{ product.name }}</p>
+                        <p class="product-id"># {{ i + 1 }}</p>
+                    </div>
+                </div>
+            </td>
+            <td style="padding-top: 20px;">
+                {{ product.category }}
+            </td>
+            <td style="padding-top: 20px;">
+                {{ product.stocksAvailable| numberFormat }} of {{ product.totalStocks| numberFormat }}
+            </td>
+            <td style="padding-top: 20px;">
+                {{ product.placedOrders | numberFormat }} of {{ product.stocksAvailable | numberFormat }}
+            </td>
+            <td style="padding-top: 20px;">
+                ₹{{ product.revenueAmount | numberFormat }}
+                <!-- <span class="tag high">
+                    <mat-icon>arrow_upward</mat-icon> {{ product.revenuePercentage }}%
+                </span> -->
+            </td>
+            <td style="padding-top: 20px;">
+                <div class="status-container">
+                    <div class="status green"></div>
+                    <div class="status-text">{{ product.status | readableString }}</div>
+                </div>
+            </td>
+            <td style="padding-top: 10px;">
+                <button mat-button (click)="openStockDetails(product)">Quick View</button>
+                <button mat-button (click)="manageStockDetails(product.productId)">Manage</button>
+                <button mat-button (click)="markAsFav(product.productId, true)" *ngIf="!product.favourite">
+                    <mat-icon>star_border</mat-icon>
+                </button>
+                <button mat-button (click)="markAsFav(product.productId, false)" *ngIf="product.favourite">
+                    <mat-icon>star</mat-icon>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!products || products.length <= 0">
+            <td colspan="8" class="no-product">No products available at this moment</td>
+        </tr>
+    </tbody>
+</table>
+
+<nz-drawer [nzFooter]="footerTpl" [nzSize]="'large'" [nzClosable]="false" [nzCloseOnNavigation]="true" [nzVisible]="showDetails" [nzPlacement]="'right'" [nzTitle]="drawerTitle">
+    <ng-container *nzDrawerContent>
+        <quick-view [stockDetails]="quickViewStock"></quick-view>
+    </ng-container>
+    <ng-template #footerTpl>
+        <div style="float: right">
+          <button mat-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+          <button mat-raised-button color="accent" (click)="manageStockDetails(quickViewStock.productId)">Modify</button>
+        </div>
+      </ng-template>
+</nz-drawer>
+
+<ng-template #drawerTitle>
+    <div class="d-flex">
+        <h6>Quick View</h6>
+        <div class="ms-auto">
+            <mat-icon class="text-button" mat-ripple (click)="close()">close</mat-icon>
+        </div>
+    </div>
+</ng-template>

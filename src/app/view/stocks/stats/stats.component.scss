@@ -1,0 +1,119 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.stats-container {
+    border: 1px solid $border-color;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .stats {
+        margin: 20px 0px;
+        border-left: 1px solid $border-color;
+        padding: 0px 10px;
+        width: 100%;
+        position: relative;
+
+        h5 {
+            letter-spacing: 0.5px;
+            font-size: 1rem !important;
+            mat-icon {
+                position: relative;
+                top: 8px;
+                margin-right: 8px;
+            }
+        }
+
+        .stas-details {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            p {
+                margin-bottom: 5px;
+                color: $text-color-light;
+                font-family: $font-family-semibold;
+                letter-spacing: 1px;
+            } 
+
+            h6 {
+                font-size: 1.2rem;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                font-family: $font-family-black;
+            }
+        }
+
+    }
+
+    .stats:first-child {
+        border: none;
+    }
+
+}
+
+.individual-title {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+
+    .individual-title {
+        display: block;
+
+        h5 {
+            letter-spacing: 0.5px;
+            font-size: 0.912rem !important;
+
+            mat-icon {
+                position: relative;
+                top: 8px;
+                margin-right: 8px;
+            }
+        }
+    }
+
+    .stats-container { 
+
+        padding: 30px 0px 20px;
+
+        .title {
+            display: none;
+        }
+
+        .stats {
+            margin: 10px 0px;
+            border-left: 1px solid $border-color;
+            padding: 0px 10px;
+            width: 100%;
+            position: relative;
+
+
+        .stas-details {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            p {
+                margin-bottom: 5px;
+                color: $text-color-light;
+                font-family: $font-family-medium;
+                letter-spacing: 1px;
+                font-size: 0.712rem;
+                width: max-content;
+            } 
+
+            h6 {
+                font-size: 1rem;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                font-family: $font-family-black;
+            }
+        }
+        }
+    }  
+}

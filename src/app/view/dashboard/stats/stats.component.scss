@@ -1,0 +1,62 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.stats-container {
+    border: 1px solid $border-color;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .stats {
+        margin:  0px;
+        border-left: 1px dashed $border-color;
+        padding: 0px 20px;
+        width: 100%;
+        position: relative;
+
+        h5 {
+            letter-spacing: 0.5px;
+            font-size: 1rem !important;
+            mat-icon {
+                position: relative;
+                top: 8px;
+                margin-right: 8px;
+            }
+        }
+
+        .stas-details {
+            padding: 10px;
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%, -50%);
+
+            p {
+                color: $text-color-light;
+                font-family: $font-family-semibold;
+                letter-spacing: 1px;
+                margin-bottom: 5px;
+            } 
+
+            h6 {
+                font-size: 1.2rem;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                font-family: $font-family-black;
+            }
+
+            .sub-text {
+                font-size: 0.752rem;
+                margin-bottom: 0;
+                color: $text-color;
+            }
+        }
+
+    }
+
+    .stats:first-child {
+        border: none;
+    }
+
+}

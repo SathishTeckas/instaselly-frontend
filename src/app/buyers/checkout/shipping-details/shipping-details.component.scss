@@ -1,0 +1,14 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.card {
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid $border-color;
+}
+
+.text-light {
+    color: $text-color-light !important;
+    font-size: 0.812rem;
+    padding: 10px 0px;
+    margin-bottom: 0px;
+}

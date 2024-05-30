@@ -1,0 +1,56 @@
+<div class="filter-container">
+
+    <div [ngClass]="!isMobile ? 'd-flex': ''">
+
+        
+        <div [ngClass]="!isMobile ? 'ml-auto': ''">
+
+            <mat-form-field appearance="outline" color="accent" [ngClass]="isMobile ? 'w-100 mb-3': ''">
+                <span matPrefix><mat-icon>search</mat-icon></span>
+                <input name="filter" id="search-key" type="text" matInput placeholder="Search Product" [(ngModel)]="filter" (keyup)="onSearchChange()" (keydown)="onSearchType()">
+            </mat-form-field>
+        
+            <!-- <mat-form-field appearance="outline" color="accent">
+                <mat-select name="categoryId" id="categoryId" placeholder="Filter by Category" [(ngModel)]="category" (selectionChange)="this.applyFilter()">
+                    <mat-option *ngFor="let cat of categories" [value]="cat.categoryId">
+                        {{ cat.categoryName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+        
+        
+            <mat-form-field appearance="outline" color="accent" [ngClass]="isMobile ? 'w-100 mb-3': ''">
+                <mat-select name="status" id="status" placeholder="Filter by Status" [(ngModel)]="status" (selectionChange)="this.applyFilter()">
+                    <mat-option *ngFor="let sts of statusOptions" [value]="sts.value">
+                        {{ sts.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            
+        </div>
+
+        <div [ngClass]="!isMobile ? 'ms-auto': ''">
+
+            <mat-slide-toggle [ngClass]="isMobile ? 'w-100 mb-3': ''" [(ngModel)]="onlyFavorite" (change)="this.applyFilter()" color="primary">Favorites</mat-slide-toggle>
+            
+            <mat-form-field appearance="outline" color="accent" style="width: 150px;" [ngClass]="isMobile ? 'w-100 mb-3': ''">
+                <span matPrefix><mat-icon>filter_list</mat-icon></span>
+                <mat-select [disabled]="onlyFavorite" name="categoryId" id="categoryId" placeholder="Sort Stocks" [(ngModel)]="sortBy" (selectionChange)="this.applyFilter()">
+                    <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
+                        {{ sort.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button [hidden]="isMobile" (click)="clearFilter()" mat-button matTooltip="Clear filter & sorting" *ngIf="filter || sortBy || status || category">
+                 <mat-icon>close</mat-icon>
+            </button>
+
+            
+
+        </div>
+
+    </div>
+
+</div>

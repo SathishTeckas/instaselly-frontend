@@ -1,0 +1,85 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+::ng-deep {
+    
+    .toaster-success { 
+        
+        .mdc-snackbar__surface {
+            border: 1px solid $success;
+            background-color: #F6FFED !important;
+        }
+
+        mat-icon {
+            color: $success;
+        }
+    }
+
+    .toaster-error { 
+        
+        .mdc-snackbar__surface {
+            border: 1px solid $error;
+            background-color: #fcf1f1 !important;
+        }
+
+        mat-icon {
+            color: $error;
+            transform: rotate(45deg);
+        }
+    }
+
+    .toaster-warning { 
+        
+        .mdc-snackbar__surface {
+            border: 1px solid $warning;
+            background-color: #fff6e2 !important;
+        }
+
+        mat-icon {
+            color: $warning;
+        }
+    }
+
+    .toaster-info { 
+        
+        .mdc-snackbar__surface {
+            border: 1px solid $info;
+            background-color: #deeeff !important;
+        }
+
+        mat-icon {
+            color: $info;
+        }
+    }
+
+    .mat-mdc-snack-bar-label {
+        padding: 8px !important;
+    }
+
+    .snack-label {
+        font-size: 0.872rem;
+        font-weight: 500;
+        color: #000 !important;
+        font-family: $font-family-semibold;
+    }
+
+    mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        position: relative;
+        margin-right: 10px;
+        top: 3px;
+        margin-left: 5px;
+    }
+
+    .close-icon {
+        text-align: right;
+        color: $text-color !important;
+        margin: 0px !important;
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        margin-left: 20px !important;
+        cursor: pointer;
+    }
+} 

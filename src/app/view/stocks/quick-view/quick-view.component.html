@@ -1,0 +1,87 @@
+<div class="d-flex stock-card mb-2 p-2">
+
+    <div class="ml-auto">
+        
+        <div class="thumbnail" *ngIf="stockDetails && stockDetails.images && stockDetails.images.length > 0">
+            <img [src]="stockDetails.images[0]" alt="image preview">
+        </div>
+
+        <div class="product-details">
+            <p class="product-name">{{ stockDetails.name }}</p>
+            <p class="id"># 1</p>
+            <p class="stock-info">
+                {{ stockDetails.placedOrders | numberFormat }} of {{ stockDetails.totalStocks | numberFormat }} <span class="light-text">( Placed Orders )</span> 
+                {{ stockDetails.stocksAvailable | numberFormat }} of {{ stockDetails.totalStocks | numberFormat }} <span class="light-text">( Stocks )</span> 
+            </p>
+            <p class="last-visit">Last Updated on 17 Apr 2021</p>
+        </div>
+
+    </div>
+    
+
+    <div class="ms-auto text-right">
+
+        ₹{{ stockDetails.revenueAmount | numberFormat }}
+        <!-- <span class="tag high">
+            <mat-icon>arrow_upward</mat-icon> {{ stockDetails.revenuePercentage }}%
+        </span> -->
+
+        <br>
+
+        <div class="status-container">
+            <div class="status green"></div>
+            <div class="status-text">{{ stockDetails.status | readableString }}</div>
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngIf="stockDetails.variants && stockDetails.variants.length > 0">
+    <h6 class="mb-2">Details</h6>
+
+    <div class="stock-card mb-2" *ngFor="let variants of stockDetails.variants">
+
+        <nz-list nzSize="small">
+            <nz-list-item *ngFor="let prop of variants.properties">
+                <span class="text-light">{{ prop.name }}</span>
+                {{ prop.value }}
+            </nz-list-item>
+
+            <nz-list-item>
+                <span class="text-light">Actual Price</span>
+                ₹{{ variants.purchaseAmount | numberFormat }}
+            </nz-list-item>
+
+            <nz-list-item>
+                <span class="text-light">Selling Price</span>
+                ₹{{ variants.sellingPrice | numberFormat }}
+            </nz-list-item>
+
+            <nz-list-item>
+                <span class="text-light">Stocks</span>
+                {{ variants.availableStocks | numberFormat }} of {{ variants.totalStocks | numberFormat}}
+            </nz-list-item>
+
+            <nz-list-item>
+                <span class="text-light">Created Orders</span>
+                {{ variants.createdOrders | numberFormat }}
+            </nz-list-item>
+
+            <nz-list-item>
+                <span class="text-light">Placed Orders</span>
+                {{ variants.placedOrders | numberFormat }} of {{ variants.totalStocks | numberFormat}}
+            </nz-list-item>
+
+            <nz-list-item>
+                <span class="text-light">Revenue</span>
+                <div>
+                    ₹{{ variants.revenueAmount | numberFormat}}
+                    <!-- <span class="tag high">
+                        <mat-icon>arrow_upward</mat-icon> {{ variants.revenuePercentage }}%
+                    </span> -->
+                </div>
+            </nz-list-item>
+        </nz-list>
+    </div>
+</div>

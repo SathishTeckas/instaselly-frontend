@@ -1,0 +1,28 @@
+<div class="auth-content-card">
+   
+    <h6 class="auth-title">OTP Verification</h6>
+    
+    <p class="description" *ngIf="id && method">
+        Enter the OTP that has been sent to your {{ method }} <br>
+        <b>{{ id }}</b>
+    </p>
+
+    <form [formGroup]="otpForm">
+        
+        <div class="form">
+
+            <input type="text" class="otp-input" *ngFor="let i of [1,2,3,4,5,6]">
+            
+            <br>
+
+            <p class="timer">02 : 00 Mins</p>
+            
+        </div>
+    
+        <button mat-raised-button class="w-100" color="primary">Submit</button>
+        <p class="resend-otp">Didn't receive the OTP? <a class="text-button">Resend</a></p>
+    </form>
+
+</div>
+
+<button mat-button class="w-100" (click)="goto()">Back to Login</button>

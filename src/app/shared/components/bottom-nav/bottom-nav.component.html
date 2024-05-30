@@ -1,0 +1,8 @@
+<div class="bottom-bar">
+    <mat-toolbar class="toolbarNav">
+        <button mat-flat-button [routerLink]="menu.path" routerLinkActive="menu-active" *ngFor="let menu of menuItems">
+          <mat-icon class="material-icons color_blue">{{ menu.icon }}</mat-icon>
+          <span>{{ menu.compactName }}</span>
+        </button>
+      </mat-toolbar>
+</div>

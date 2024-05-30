@@ -1,0 +1,13 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.rule-container {
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+p {
+    margin-bottom: 0;
+    letter-spacing: 0.8px;
+    padding: 10px 0px;
+}

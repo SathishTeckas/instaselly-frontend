@@ -1,0 +1,56 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+@import '/src/assets/instaselly/styles/style.scss';
+
+.auth-content-card {
+     width: 100%;
+     padding: 15px;
+
+    .auth-title {
+        font-size: 1.1rem;
+        color: $text-color;
+        font-family: $font-family-semibold;
+        text-align: center;
+        letter-spacing: 0.5px;
+        line-height: 26px;
+    }
+
+    .description {
+        text-align: center;
+        margin: 10px 0px;
+        font-size: 0.812rem;
+        color: $text-color-light;
+    }
+
+    .form {
+        margin: 40px 0px;
+    }
+}
+
+.password-btn {
+    width: 30px;
+    height: 30px;
+    margin-top: -10px;
+
+    mat-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-content-card { 
+        .auth-title { 
+            font-size: 0.9rem;
+        }
+    }
+
+    .text-button { 
+        font-size: 0.812rem !important;
+    }
+
+    ::ng-deep .mdc-checkbox {
+        padding-right: 0px !important;
+        margin-left: -8px !important;
+    }
+}

@@ -1,0 +1,9 @@
+<insta-navbar [isMobile]="isMobile"></insta-navbar>
+
+<div class="container-fluid layout" [ngStyle]="isMobile ? { 'padding-bottom': '70px' }: {}">
+    <router-outlet></router-outlet>
+</div>
+
+<div class="bottom-bar" *ngIf="isMobile">
+    <bottom-nav></bottom-nav>
+</div>

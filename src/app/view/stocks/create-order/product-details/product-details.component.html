@@ -1,0 +1,61 @@
+<div class="product-details-container" *ngIf="stockDetails">
+
+    <p class="product-name">{{ stockDetails.name }}</p>
+
+    <div class="product-images">
+        <div class="images" *ngFor="let img of stockDetails.images">
+            <img [src]="img"
+                alt="image preview">
+        </div>
+    </div>
+
+    <div class="product-details">
+        <table class="table table-border w-100" [ngClass]="{ 'error': isError }">
+            <thead>
+                <td *ngFor="let field of params">{{ field.name }}</td>
+                <td style="width: 120px;">Quantity</td>
+                <td>Price</td>
+                <td *ngIf="editable" style="width: 49px;text-align: center;"></td>
+            </thead>
+            <tbody [formGroup]="productFormGroup">
+
+                <ng-container formArrayName="products">
+
+                    <ng-container *ngFor="let product of products.controls; let i = index;">
+
+                        <tr [formGroupName]="i">
+                            <td *ngFor="let field of params">
+                                <mat-select (selectionChange)="filterProductByParameters($event, i, field.name)" [formControlName]="field.name" [id]="field.name">
+                                    <mat-option *ngFor="let opt of options[field.name]" [value]="opt">
+                                        {{ opt }}
+                                    </mat-option>
+                                </mat-select>
+                            </td>
+                            <td>
+                                <input [readonly]="!editable" (keydown)="$event.preventDefault()" (change)="onQtyChange($event, i)" type="number" [min]="minMaxStocks[i].min" [max]="minMaxStocks[i].max" formControlName="qty" name="qty" id="qty">
+                            </td>
+                            <td>
+                                <input [readonly]="!editable" type="number" min="0" formControlName="price" name="price" id="price">
+                            </td>
+                            <td *ngIf="editable">
+                                <button class="icon-button delete-icon  w-100" matRipple #tooltip="matTooltip"
+                                    matTooltip="Delete" matTooltipPosition="above" (click)="removeProduct(i)">
+                                    <mat-icon>delete_outline</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </ng-container>
+
+                </ng-container>
+            </tbody>
+        </table>
+
+        <p class="hint" *ngIf="isError">
+            Please add product details
+        </p>
+
+        <button *ngIf="editable" class="add-btn" mat-raised-button color="accent" (click)="addProduct()">Add More</button>
+    </div>
+
+</div>

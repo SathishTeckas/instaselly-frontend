@@ -1,0 +1,9 @@
+<div class="buyer-container">
+    <div class="buyer-card" *ngFor="let buyer of buyers">
+        <div class="center-content">
+            <h5>{{ buyer.name }}</h5>
+            <h6>{{ buyer.totalOrders | numberFormat }} Total Orders</h6>
+            <p>₹{{ buyer.totalPurchaseAmount | numberFormat }} <span class="light-text">(Total order price)</span></p>
+        </div>
+    </div>
+</div>

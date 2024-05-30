@@ -1,0 +1,42 @@
+<div class="mb-3 w-100">
+    <h6 class="mb-3 mt-3">Shipping Address</h6>
+
+    <div class="card">
+
+        <div class="d-flex">
+            <div class="ml-auto">
+                <p class="text-light">Shipping Details</p>
+            </div>
+            <div class="ms-auto">
+                <button mat-button (click)="change()">Change</button>
+            </div>
+        </div>
+
+        <p *ngIf="address?.shippingAddress?.fullName as name">{{ name }},</p>
+
+        <p>
+            <span *ngIf="address?.shippingAddress?.addressLine1 as appartment">{{ appartment }} ,</span><br>
+            <span *ngIf="address?.shippingAddress?.addressLine2 as address">{{ address }} ,</span><br>
+            <span *ngIf="address?.shippingAddress?.city as city">{{ city }} ,</span><br>
+            <span *ngIf="address?.shippingAddress?.state as state">{{ state }} ,</span><br>
+            <span *ngIf="address?.shippingAddress?.pincode as pincode">{{ pincode }} ,</span><br>
+            <span *ngIf="address?.shippingAddress?.phoneNumber as phone">{{ phone }}</span>
+        </p>
+
+        <p class="text-light">Shipping Method</p>
+
+        <div class="d-flex">
+            <div class="ml-auto">
+                <p class="text-light">South India</p>
+            </div>
+            <div class="ms-auto">
+                <p>80</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="float-right">
+    <button class="save-btn" mat-raised-button color="accent" (click)="save()">Make Payment</button>
+</div>

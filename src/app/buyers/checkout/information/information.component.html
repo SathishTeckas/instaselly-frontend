@@ -1,0 +1,201 @@
+<div [hidden]="shipping">
+    <h6>Contact</h6>
+
+    <form [formGroup]="informationForm">
+    
+        <div class="row g-2 mb-2">
+            <div class="col-md-5">
+                <mat-form-field appearance="outline" class="w-100 dont-show" color="accent">
+                    <input matInput placeholder="Email / WhatsApp number" formControlName="email">
+                    <mat-error *ngIf="hasError('email', 'required')">
+                        Please enter Email or Mobile number
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <mat-checkbox formControlName="trackupdate" color="accent">Update me with tracking details</mat-checkbox>
+            </div>
+        </div>
+    
+        <div class="row g-2 mb-2" formGroupName="shippingAddress">
+            
+            <div class="col-md-12">
+                <h6>Shipping Address</h6>
+            </div>
+    
+            <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100" color="accent">
+                    <mat-select placeholder="Country/Region" formControlName="country">
+                        <mat-option *ngFor="let country of ['India']" [value]="country">
+                            {{ country }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="hasShippingFormError('country', 'required')">
+                        Please select country
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100" color="accent">
+                    <input matInput placeholder="Your Name" formControlName="fullName">
+                    <mat-error *ngIf="hasShippingFormError('fullName', 'required')">
+                        Please enter your name
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="col-md-12">
+                <mat-form-field appearance="outline" class="w-100" color="accent">
+                    <input matInput placeholder="Address" formControlName="addressLine1">
+                    <mat-error *ngIf="hasShippingFormError('addressLine1', 'required')">
+                        Please enter address
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="col-md-12">
+                <mat-form-field appearance="outline" class="w-100" color="accent">
+                    <input matInput placeholder="Apartment, Suite, etc (optional)" formControlName="addressLine2">
+                    <mat-error *ngIf="hasShippingFormError('addressLine2', 'required')">
+                        Please enter apartment, suite, street name or door number
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100" color="accent">
+                    <input matInput placeholder="City" formControlName="city">
+                    <mat-error *ngIf="hasShippingFormError('city', 'required')">
+                        Please enter city
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100" color="accent">
+                    <input matInput placeholder="State" formControlName="state">
+                    <mat-error *ngIf="hasShippingFormError('state', 'required')">
+                        Please select state
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100" color="accent">
+                    <input matInput placeholder="Pincode" formControlName="pincode">
+                    <mat-error *ngIf="hasShippingFormError('pincode', 'required')">
+                        Please enter pincode
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div class="col-md-12">
+                <mat-form-field appearance="outline" class="w-100" color="accent">
+                    <input matInput placeholder="Phone number" formControlName="phoneNumber">
+                    <mat-error *ngIf="hasShippingFormError('phoneNumber', 'required')">
+                        Please enter phone or mobile number
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    
+        <div class="mb-2" >
+            
+            <h6 class="mb-3">Billing Address</h6>
+    
+            <div class="mb-3">
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="sameAsDelivery" [ngModelOptions]="{standalone: true}" (ngModelChange)="onTypeChange($event)">
+                    <mat-radio-button [value]="true">Same as shipping address</mat-radio-button>
+                    <mat-radio-button [value]="false">Use different address</mat-radio-button>
+                </mat-radio-group>
+            </div>
+    
+            <div class="row g-2" [hidden]="sameAsDelivery" formGroupName="billingAddress">
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" class="w-100" color="accent">
+                        <mat-select placeholder="Country/Region" formControlName="country">
+                            <mat-option *ngFor="let country of ['India']" [value]="country">
+                                {{ country }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasBillingFormError('country', 'required')">
+                            Please select country
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" class="w-100" color="accent">
+                        <input matInput placeholder="Your Name" formControlName="fullName">
+                        <mat-error *ngIf="hasBillingFormError('fullName', 'required')">
+                            Please enter your name
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" class="w-100" color="accent">
+                        <input matInput placeholder="Address" formControlName="addressLine1">
+                        <mat-error *ngIf="hasBillingFormError('addressLine1', 'required')">
+                            Please enter address
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" class="w-100" color="accent">
+                        <input matInput placeholder="Apartment, Suite, etc (optional)" formControlName="addressLine2">
+                        <mat-error *ngIf="hasBillingFormError('addressLine2', 'required')">
+                            Please enter apartment, suite, street name or door number
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" class="w-100" color="accent">
+                        <input matInput placeholder="City" formControlName="city">
+                        <mat-error *ngIf="hasBillingFormError('city', 'required')">
+                            Please enter city
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" class="w-100" color="accent">
+                        <input matInput placeholder="State" formControlName="state">
+                        <mat-error *ngIf="hasBillingFormError('state', 'required')">
+                            Please select state
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" class="w-100" color="accent">
+                        <input matInput placeholder="Pincode" formControlName="pincode">
+                        <mat-error *ngIf="hasBillingFormError('pincode', 'required')">
+                            Please enter pincode
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" class="w-100" color="accent">
+                        <input matInput placeholder="Phone number" formControlName="phoneNumber">
+                        <mat-error *ngIf="hasBillingFormError('phoneNumber', 'required')">
+                            Please enter phone or mobile number
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+    
+        </div>
+    
+        <div class="float-right" *ngIf="!preview">
+            <button class="save-btn" mat-raised-button color="accent" (click)="save()">Continue to Payment</button>
+        </div>
+    </form>
+</div>
+
+
+<router-outlet></router-outlet>

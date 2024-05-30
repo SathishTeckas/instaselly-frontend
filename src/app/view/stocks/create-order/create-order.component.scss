@@ -1,0 +1,72 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+@import '/src/assets/instaselly/styles/style.scss';
+
+.container-box {
+    border: 1px solid $border-color;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+    position: relative;
+
+    .item-id {
+        background-color: $border-color;
+        width: fit-content;
+        padding: 8px 12px;
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+
+        .item {
+            font-family: $font-family-semibold;
+            margin-bottom: 0px;
+            font-weight: 500;
+            font-size: 0.812rem;
+            letter-spacing: 0.5px;
+            color: $text-color;
+        }
+    }
+
+    .item-details {
+        padding: 15px;
+        overflow-y: auto;
+    
+        .checkbox {
+            margin-left: -10px;
+        }
+        
+    }
+
+}
+
+.label {
+    margin-bottom: 0px
+}
+
+.order {
+    width: 100%;
+    display: flow-root;
+
+    .order-details {
+        margin: 20px 0px;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: $border-color;
+        width: 25%;
+        float: right;
+    }
+}
+
+
+.action-buttons {
+    display: block;
+    background-color: $body-bg;
+    z-index: 10;
+    text-align: right;
+    width: 100%;
+    margin: 10px 0px;
+
+    .save-btn {
+        margin-left: 10px;
+        padding: 0 30px;
+    }
+}

@@ -1,0 +1,66 @@
+<breadcrumb></breadcrumb>
+
+<div class="container-box">
+
+    <div class="d-flex">
+        <div class="ml-auto">
+
+            <h6>Order ID #{{orderDetails.orderId }}</h6>
+            <p class="light-text" *ngIf="orderDetails.createdAt as date">
+                Created on {{ date | millisecondsToDate }}
+            </p>
+
+        </div>
+        <div class="ms-auto">
+            <button *ngIf="orderDetails.customer && orderDetails.customerName" mat-button (click)="printAddress(orderDetails.customer, orderDetails.customerName)">Print Address</button>
+            <button mat-button (click)="openOrderLink()">Order Link</button>
+            <mat-form-field appearance="outline" color="accent" class="order-status">
+                <mat-select [ngModel]="orderDetails.status" (ngModelChange)="onStatusChange($event)">
+                    <mat-option *ngFor="let status of orderStatus" [value]="status.value">{{ status.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+    </div>
+
+
+    <div class="d-flex space-between">
+        <div>
+            <p>Buyer Address</p>
+
+            <div class="address" *ngIf="(!orderDetails.customer || !orderDetails.customerName); else showAddress">
+                <p>Yet to add by customer</p>
+            </div>
+
+            <ng-template #showAddress>
+                <b *ngIf="orderDetails.customerName as name">{{ name }}</b>
+                <p class="address">
+                    <span *ngIf="orderDetails.customer?.shippingAddress?.addressLine1 as appartment">{{ appartment }} ,</span><br>
+                    <span *ngIf="orderDetails.customer?.shippingAddress?.addressLine2 as address">{{ address }} ,</span><br>
+                    <span *ngIf="orderDetails.customer?.shippingAddress?.city as city">{{ city }} ,</span><br>
+                    <span *ngIf="orderDetails.customer?.shippingAddress?.state as state">{{ state }} ,</span><br>
+                    <span *ngIf="orderDetails.customer?.shippingAddress?.pincode as pincode">{{ pincode }} ,</span><br>
+                    <span *ngIf="orderDetails.customer?.shippingAddress?.phoneNumber as phone">{{ phone }}</span>
+                </p>
+            </ng-template>
+
+        </div>
+
+        <div>
+            <p>Tracking ID</p>
+            <a *ngIf="!orderDetails.trackingId || !orderDetails.trackingUrl"
+                (click)="addTrackingDetails()">Add tracking details</a>
+            <b *ngIf="orderDetails.trackingId as id">{{ id }}</b> <br>
+            <a *ngIf="orderDetails.trackingUrl as url" [href]="url" target="_blank">{{ url }}</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-box">
+
+    <div *ngFor="let variants of orderDetails?.variants">
+        <product-details [variants]="variants" [editable]="false"></product-details>
+    </div>
+
+</div>

@@ -1,0 +1,46 @@
+
+<owl-carousel-o [options]="owlOptions">
+    
+    <ng-template carouselSlide *ngFor="let file of uploadedImages; let i = index">
+        <!-- <div style="max-width: 300px;"> -->
+            <image-upload 
+                [previewImage]="file.thumb" 
+                [isPrimary]="file.isPrimary"
+                (mark)="markAsPrimary(i)"
+                (onImageDelete)="onDelete(i)"
+            ></image-upload>
+        <!-- </div> -->
+    </ng-template>
+
+    <ng-template carouselSlide>
+        <image-upload 
+            [previewImage]="isUpload"
+            [isPrimary]="(!uploadedImages || uploadedImages.length <= 0) ? true: false"
+            (onImageChange)="onFileChange($event)"
+        ></image-upload>
+    </ng-template>
+
+</owl-carousel-o>
+
+<!-- <div class="row g-2">
+    <div class="col-md-2" *ngFor="let file of uploadedImages; let i = index">
+        <image-upload 
+            [previewImage]="file.thumb" 
+            [isPrimary]="file.isPrimary"
+            (mark)="markAsPrimary(i)"
+            (onImageDelete)="onDelete(i)"
+        ></image-upload>
+    </div>
+    <div class="col-md-2">
+        <image-upload 
+            [previewImage]="isUpload"
+            [isPrimary]="(!uploadedImages || uploadedImages.length <= 0) ? true: false"
+            (onImageChange)="onFileChange($event)"
+        ></image-upload>
+    </div>
+</div> -->
+
+<p class="hint">
+    <mat-icon>info</mat-icon>
+    You can add jpj, png, bmp, gif, tiff with a total of 6 images. Each images should not exceed more than 5 MB.
+</p>

@@ -1,0 +1,26 @@
+@import '/src/assets/instaselly/styles/style.scss';
+
+
+::ng-deep {
+    .mat-mdc-dialog-container .mdc-dialog__title {
+        font-weight: 900 !important;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper {
+        height: 0px !important;
+    }
+}
+
+mat-label {
+    font-size: 0.812rem;
+    margin-bottom: 5px;
+}
+
+.page-heading {
+    margin: 0px !important;
+}
+
+.action-button {
+    float: right;
+    padding: 8px 25px 20px;
+}

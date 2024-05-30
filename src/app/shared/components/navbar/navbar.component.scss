@@ -1,0 +1,152 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+.navbar {
+    width: 100%;
+    padding: 10px;
+    background-color: $body-bg;
+    border-bottom: 1px solid $border-color;
+    transition: all .4s;
+    display: flex;
+    
+    .left-bar {
+      flex: auto;
+      padding: 0px 20px;
+      
+      .action-items {
+        margin-left: 20px;
+        
+        .menu-btn {
+          font-weight: 600;
+          font-size: 0.812rem;
+        }
+      }
+    }
+    
+    .action-items {
+      display: inline-block;
+      
+      a {
+        margin: 0px 10px;
+        border-radius: 0px !important;
+        padding: 12px 0px;
+        display: initial;
+      }
+      
+      .menu-active {
+        border-bottom: 5px solid $primary-color;
+      }
+      
+      button {
+        margin: 0px 10px;
+      }
+    }
+    
+    .right-bar {
+      flex: end;
+      
+      .raised-menu-btn {
+        font-size: 0.812rem;
+        font-weight: 500;
+        padding: 0 20px;
+        border-radius: 5px;
+        box-shadow: none !important;
+      }
+      
+      .intersection {
+        background-color: #ccc;
+        width: 2px;
+        height: 20px;
+        display: inline-block;
+        margin: 10px 10px;
+      }
+      
+      .date-picker {
+        position: relative;
+        top: -5px;
+      }
+      
+      .profile-circle {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: $primary-color;
+        color: #fff;
+        font-size: 0.812rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        margin: 0px 10px;
+        cursor: pointer;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      
+      .left-bar {
+        padding: 10px 0;
+        
+        .action-items {
+          margin-left: 0;
+          
+          .menu-btn {
+            margin-top: 10px;
+          }
+        }
+      }
+      
+      .right-bar {
+        margin-top: 10px;
+        
+        .raised-menu-btn {
+          margin-top: 10px;
+        }
+        
+        .intersection {
+          display: none;
+        }
+        
+        .profile-circle {
+          margin: 0;
+        }
+      }
+    }
+    
+    @media (min-width: 1200px) {
+      .left-bar {
+        .action-items {
+          margin-left: 50px;
+        }
+      }
+      
+      .right-bar {
+        .intersection {
+          margin: 10px;
+        }
+        
+        .profile-circle {
+          margin: 0px 10px;
+        }
+      }
+    }
+  }
+  
+  .app-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: $text-color;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  ::ng-deep {
+    .mat-mdc-menu-content {
+      padding: 0 !important;
+    }
+
+    .mat-mdc-menu-item {
+      padding: 10px !important;
+    }
+  }

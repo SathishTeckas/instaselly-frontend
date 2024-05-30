@@ -1,0 +1,23 @@
+@import '/src/assets/instaselly/styles/variables.scss';
+
+h5 {
+    letter-spacing: 0.5px;
+    font-size: 1rem !important;
+    font-family: $font-family-black;
+    mat-icon {
+        position: relative;
+        top: 8px;
+        margin-right: 8px;
+    }
+}
+
+.card {
+    padding: 15px;
+    border-radius: 10px;
+    height: 100%;
+    border: 1px solid $border-color;
+}
+
+.no-padding {
+    padding: 0 !important;
+}

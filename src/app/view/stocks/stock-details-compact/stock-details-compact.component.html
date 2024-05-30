@@ -1,0 +1,38 @@
+<div class="product-compact" [ngClass]="product.checked ? 'selected': ''" (click)="onSelect(product.checked ? false: true, i)" *ngFor="let product of products; let i = index">
+    <div class="d-flex">
+        <div class="ml-auto">
+            <div class="thumbnail">
+                <img *ngIf="product.images && product.images.length > 0" [src]="product.images[0]"
+                    alt="image preview">
+            </div>
+    
+            <div class="product-details">
+                <p> {{ product.name }} </p>
+                <p class="qty"> {{ product.placedOrders | numberFormat }} of {{ product.createdOrders | numberFormat }} <span class="light-text">( Placed Orders )</span></p>
+                <p>  ₹{{ product.revenueAmount | numberFormat }} </p>
+            </div>
+        </div>
+    
+        <div class="ms-auto text-right product-details">
+            
+            <div>
+                <button mat-button (click)="manageStockDetails(product.productId)">Manage</button>
+                <button class="fav-btn" mat-button (click)="markAsFav(product.productId, true)" *ngIf="!product.favourite">
+                    <mat-icon>star_border</mat-icon>
+                </button>
+                <button class="fav-btn" mat-button (click)="markAsFav(product.productId, false)" *ngIf="product.favourite">
+                    <mat-icon>star</mat-icon>
+                </button>
+            </div>
+
+            <div class="status-container">
+                <div class="status-text">{{ product.status | readableString }}</div>
+                <div class="status green"></div>
+            </div>
+
+            <p class="qty"> {{ product.stocksAvailable | numberFormat }} of {{ product.totalStocks | numberFormat }} <span class="light-text">( Stocks )</span></p>
+
+        </div>
+    </div>    
+</div>
+

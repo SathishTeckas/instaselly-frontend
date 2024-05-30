@@ -1,0 +1,22 @@
+<div class="d-flex">
+    <div class="ml-auto">
+        <div class="thumbnail">
+            <img *ngIf="variants.images && variants.images.length > 0" [src]="variants.images[0]"
+                alt="image preview">
+        </div>
+
+        <div class="product-details">
+            <p> Qty:  {{ variants.quantity }} </p>
+            <p> {{ variants.productName }} </p>
+            <p class="light-text">
+                <span *ngFor="let items of variants.attributes; let l = last">
+                   {{ items.value }} <span *ngIf="!l">, </span>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="ms-auto text-right">
+        <p>{{ variants.sellingPrice | numberFormat }}</p>
+    </div>
+</div>

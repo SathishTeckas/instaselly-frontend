@@ -1,0 +1,23 @@
+<h6 class="mb-3">Shipping Rule</h6>
+
+<div class="rule-container mb-3">
+    <div class="d-flex">
+        <add-rule></add-rule>
+        <div class="ms-auto">
+            <button mat-raised-button color="accent">Add Rule</button>
+        </div>
+    </div>
+</div>
+
+<div class="rules">
+    <nz-list nzBordered>
+        <nz-list-item *ngFor="let i of [1,2,3,4,5]">
+          <p>
+            When <b>Billing Price</b> is <b>Greater Than</b> <b> Rs.10,000</b>, then Shipping cost is <b>Rs.20.00</b>
+          </p>
+          <button mat-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </nz-list-item>
+      </nz-list>
+</div>
