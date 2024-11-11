@@ -1,11 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { HelperService } from 'src/app/shared/controller/common/helper/helper.service';
-import { ProductService } from 'src/app/shared/controller/product/product.service';
-import { iCommonResponse } from 'src/app/shared/interface/common/common-response.interface';
 import { iStockFilters } from 'src/app/shared/interface/stock/stock.filter.interface';
-import { iStockResponse, iStocks } from 'src/app/shared/interface/stock/stock.interface';
+import { iStockResponse, iStocks, iStockDetails } from 'src/app/shared/interface/stock/stock.interface';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
@@ -27,11 +24,9 @@ export class StocksComponent implements AfterViewInit {
   public showFilter: boolean = false;
 
   constructor(
-    private ps: ProductService,
     private router: Router,
-    private helper: HelperService,
-    private breakpointObserver: BreakpointObserver,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   public ngAfterViewInit(): void {
@@ -39,58 +34,83 @@ export class StocksComponent implements AfterViewInit {
       .subscribe(result => {
         this.isMobile = result.matches;
       });
-      this.getProducts();
+    this.getDummyProducts(); // Call the method to load dummy data
     this.cdRef.detectChanges();
   }
 
-  private getProducts(filter: iStockFilters | undefined = undefined): void {
-    this.ps.getProducts(this.pageNumber, this.pageSize, filter).subscribe({
-      next: (res: iStockResponse) => {
-        
-        if (!res || !res.data) {
-          this.products = [];
-          this.totalProducts = 0;
-          return;
-        };
-
-        this.products = res.data.products;
-        
-        if (res.data.images) {
-          this.products.forEach((product: iStocks) => {
-            product.images = res.data.images[product.productId];
-          });
-        }
-        
-        this.totalProducts = res.totalPage * res.pageSize;
+  private getDummyProducts(): void {
+    // Dummy data for products
+    this.products = [
+      {
+        productId: 'prod123',
+        name: 'Product 1',
+        categoryId: 'cat123',
+        category: 'Category 1',
+        favourite: false,
+        instagramCaption: 'This is a dummy product on Instagram',
+        createdOrders: 5,
+        placedOrders: 10,
+        revenueAmount: 500,
+        revenuePercentage: 10,
+        shareToInsta: true,
+        status: 'Available',
+        stocksAvailable: 20,
+        totalStocks: 50,
+        images: ['https://via.placeholder.com/150'],
+        variants: [
+          {
+            purchaseAmount: 50,
+            properties: [{ name: 'Color', value: 'Red' }],
+            minimumOrderQuantity: 1,
+            minimumStocks: 10,
+            sellingPrice: 100,
+            totalStocks: 50,
+            quantity: 10
+          }
+        ]
       },
-      error: () => {
-        this.products = [];
-        this.totalProducts = 0;
+      {
+        productId: 'prod124',
+        name: 'Product 2',
+        categoryId: 'cat124',
+        category: 'Category 2',
+        favourite: true,
+        instagramCaption: 'Another dummy product',
+        createdOrders: 3,
+        placedOrders: 8,
+        revenueAmount: 400,
+        revenuePercentage: 15,
+        shareToInsta: true,
+        status: 'Available',
+        stocksAvailable: 10,
+        totalStocks: 30,
+        images: ['https://via.placeholder.com/150'],
+        variants: [
+          {
+            purchaseAmount: 60,
+            properties: [{ name: 'Size', value: 'M' }],
+            minimumOrderQuantity: 2,
+            minimumStocks: 5,
+            sellingPrice: 120,
+            totalStocks: 30,
+            quantity: 5
+          }
+        ]
       }
-    })
+    ];
+    this.totalProducts = this.products.length; // Set the total products based on dummy data
   }
 
   public updateFavorite(event: { id: string, isFav: boolean }): void {
-    this.ps.markAsFavorite(event.id, event.isFav).subscribe({
-      next: (res: iCommonResponse) => {
-        if (!res || res.status !== 'Successful') {
-          this.helper.showToaster(res?.description ?? 'Something went wrong. Please tryagain later', 'error');
-          return;
-        }
-
-        this.helper.showToaster('Product ' + (event.isFav ? 'marked': 'unmarked') + ' as favourite', 'success');
-        this.getProducts(this.filter);
-
-      }, error: (err: any) => {
-        this.helper.showToaster(err?.error?.description ?? 'Something went wrong. Please tryagain later', 'error');
-      }
-    });
+    // Mock function to simulate marking a product as favorite
+    alert(`Product ${event.id} marked as favorite: ${event.isFav}`);
   }
 
   public onPageChange(event: PageEvent): void {
     this.pageSize = event.pageSize;
     this.pageNumber = event.pageIndex;
-    this.getProducts(this.filter);
+    // Simulate fetching products based on pagination
+    this.getDummyProducts();
   }
 
   public onStockSelectionChange(event: iStocks[]): void {
@@ -99,32 +119,15 @@ export class StocksComponent implements AfterViewInit {
 
   public onFilter(event: iStockFilters): void {
     this.filter = event;
-    this.getProducts(this.filter);
+    // Filter logic can be added here
+    this.getDummyProducts();
   }
 
   public deleteStocks(): void {
-    
-    this.ps.deleteProduct(this.selectedProducts.map(val => val.productId)).subscribe({
-      next: (res: iCommonResponse) => {
-        if (!res || res.status !== 'Successful') {
-          this.helper.showToaster(res?.description ?? 'Something went wrong. Please tryagain later', 'error');
-          return;
-        }
-
-        this.helper.showToaster('Stock deleted successfully', 'success');
-        this.selectedProducts = [];
-        this.clearSelections();
-
-        this.selectedProducts.forEach((products: iStocks) => {
-          if (products && products.index) {
-            this.products.splice(products.index, 1);
-          }
-        });
-        
-      }, error: (err: any) => {
-        this.helper.showToaster(err?.error?.description ?? 'Something went wrong. Please tryagain later', 'error');
-      }
-    });
+    // Simulate the deletion of selected products
+    alert('Deleted selected products');
+    this.selectedProducts = [];
+    this.clearSelections();
   }
 
   public clearSelections(): void {
@@ -138,7 +141,7 @@ export class StocksComponent implements AfterViewInit {
       showOnlyFavorites: false,
       sortby: '',
       status: ''
-    }
+    };
     this.showFilter = false;
   }
 

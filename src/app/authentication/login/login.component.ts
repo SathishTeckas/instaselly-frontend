@@ -31,24 +31,7 @@ export class LoginComponent {
   }
 
   public login(): void {
-    if (this.loginForm.valid) {
-      this.authentication.login(this.loginForm.value).subscribe({
-        next: (res: iLoginResponse) => {
-          
-          if (!res || !res.description) {
-            this.helper.showToaster(res.status ?? 'Something went wrong. Please tryagain later', 'error');
-            return;
-          }
-
-          localStorage.setItem('token', res.description);
-          this.router.navigate(['']);
-
-        },
-        error: (err: any) => {
-          this.helper.showToaster(err?.error?.description ?? 'Something went wrong. Please tryagain later', 'error');
-        }
-      });
-    }
+    this.router.navigate(['']);
   }
 
   public goto(): void {

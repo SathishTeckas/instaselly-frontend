@@ -6,7 +6,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./view/view.module').then(m => m.ViewModule),
-    canActivate: [AuthGuard],
   },
   {
     path: 'auth',

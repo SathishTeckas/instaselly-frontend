@@ -9,6 +9,7 @@ import { iOrderStats } from 'src/app/shared/interface/dashboard/stats.interface'
 })
 export class StatsComponent {
 
+  // Input property to receive stats data
   @Input() stats: {
     orderStats: Partial<iOrderStats>;
     revenue: Partial<iRevenue>;
@@ -17,5 +18,6 @@ export class StatsComponent {
     revenue: {}
   };
 
+  // Local variable to hold the current date
   public date: Date = new Date();
 }
